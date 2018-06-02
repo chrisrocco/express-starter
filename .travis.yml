@@ -1,0 +1,22 @@
+sudo: required #is required to use docker service in travis
+
+language: node_js # can be any language
+
+services:
+  - docker # required, but travis uses older version of docker :(
+
+branches:
+  only:
+  - master
+
+install:
+  - echo "install nothing!" # put your normal pre-testing installs here
+
+script:
+  - echo "no tests!" # put your normal testing scripts here
+
+after_success:
+  - docker --version
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker build -t chrisrocco/rc-authentication:$TRAVIS_BRANCH .
+  - docker push chrisrocco/rc-authentication:$TRAVIS_BRANCH

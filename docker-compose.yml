@@ -1,0 +1,35 @@
+version: '3.3'
+
+networks:
+  default:
+    external:
+      name: research-coder
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/app
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      MYSQL_HOST: mysql
+      MYSQL_DB: pipes
+      MYSQL_USER: root
+      MYSQL_PASS: secret
+    ports:
+      - 8080:80
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: pipes
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
