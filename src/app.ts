@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import * as dotenv from 'dotenv'
-import {getConfigHelper} from "./core/config/helper";
+import {getConfigHelper} from "./core/config/config";
 import {getConfig} from "./_config";
 import {connectToRabbitMQ} from "./core/messaging/connect";
 import {httpErrorHandler} from "./core/errors/httpErrorHandler";

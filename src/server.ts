@@ -1,6 +1,6 @@
 import {getApp} from "./app"
 import {RabbitMQConnectionError} from "./core/messaging/errors/RabbitMQConnectionError";
-import {attemptRun} from "./core/attemptRun/attemptRun";
+import {attemptRun} from "./core/supervisor/attemptRun";
 import {DBConnectionError} from "./core/database/errors/DBConnectionError";
 
 export const startServer = async () => {
